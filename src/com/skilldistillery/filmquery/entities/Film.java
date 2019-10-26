@@ -1,7 +1,10 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Film {
-	private int id;
+	private int filmId;
 	private String title;
 	private String description;
 	private Integer releaseYear;
@@ -11,6 +14,7 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	List<Film> films = new ArrayList<>();
 
 	public Film() {
 		super();
@@ -19,7 +23,7 @@ public class Film {
 	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration,
 			int length, double replacementCost, String rating, String specialFeatures) {
 		super();
-		this.id = id;
+		this.filmId = id;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
@@ -31,12 +35,12 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
-	public int getId() {
-		return id;
+	public int getFilmId() {
+		return filmId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setFilmId(int id) {
+		this.filmId = id;
 	}
 
 	public String getTitle() {
@@ -144,7 +148,7 @@ public class Film {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (id != other.id)
+		if (filmId != other.filmId)
 			return false;
 		if (languageId != other.languageId)
 			return false;
@@ -181,7 +185,7 @@ public class Film {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Film [id=");
-		builder.append(id);
+		builder.append(filmId);
 		builder.append(", title=");
 		builder.append(title);
 		builder.append(", description=");
