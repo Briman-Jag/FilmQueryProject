@@ -16,7 +16,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	List<Film> films = new ArrayList<>();
-
+	List<Actor> actors = new ArrayList<>();
 
 	public List<Film> getFilms() {
 		return films;
@@ -202,25 +202,25 @@ public class Film {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film [id=");
+		builder.append("Film [ID= ");
 		builder.append(filmId);
-		builder.append(", title=");
+		builder.append(", Title= ");
 		builder.append(title);
-		builder.append(", description=");
+		builder.append(",\nDescription= ");
 		builder.append(description);
-		builder.append(", releaseYear=");
+		builder.append(",\nRelease Year= ");
 		builder.append(releaseYear);
-		builder.append(", languageId=");
+		builder.append(", Language ID= ");
 		builder.append(languageId);
-		builder.append(", rentalDuration=");
+		builder.append(", Rental Duration= ");
 		builder.append(rentalDuration);
-		builder.append(", length=");
+		builder.append(", Length= ");
 		builder.append(length);
-		builder.append(", replacementCost=");
+		builder.append(",\nReplacement Cost= ");
 		builder.append(replacementCost);
-		builder.append(", rating=");
+		builder.append(", Rating= ");
 		builder.append(rating);
-		builder.append(", specialFeatures=");
+		builder.append(", Special Features= ");
 		builder.append(specialFeatures);
 		builder.append("]");
 		return builder.toString();
