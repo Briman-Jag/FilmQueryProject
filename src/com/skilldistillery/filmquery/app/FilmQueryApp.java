@@ -10,37 +10,71 @@ import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
-  
-  DatabaseAccessor db = new DatabaseAccessorObject();
 
-  public static void main(String[] args) throws SQLException {
-    FilmQueryApp app = new FilmQueryApp();
-    app.test();
-//    app.launch();
-  }
+	DatabaseAccessor db = new DatabaseAccessorObject();
 
-  private void test() throws SQLException {
+	public static void main(String[] args) throws SQLException {
+		FilmQueryApp app = new FilmQueryApp();
+//		app.test();
+		app.launch();
+	}
+
+	private void test() throws SQLException {
 //    Film film = db.findFilmById(1);
 //    System.out.println(film);
 //    Actor actor = db.findActorById(1);
 //    System.out.println(actor);
-    List<Film> films = db.findFilmsByActorId(1);
-    System.out.println(films);
-    
-  }
+//		List<Film> films = db.findFilmsByActorId(1);
+//		System.out.println(films);
+		
+	}
 
-  private void launch() {
-    Scanner input = new Scanner(System.in);
-    
-    startUserInterface(input);
-    
-    input.close();
-  }
+	private void launch() {
+		Scanner input = new Scanner(System.in);
+		menu();
+		startUserInterface(input);
+		input.close();
+	}
 
-  private void startUserInterface(Scanner input) {
-	  
-	  
-    
-  }
+	private void startUserInterface(Scanner input) {
+
+		int choice = input.nextInt();
+		do {
+			userDecision(choice);
+		} while (choice != 3);
+
+	}
+
+	private void userDecision(int choice) {
+		
+		switch (choice) {
+
+		case 1:
+			System.out.println("___Searching Film by Film's ID___");
+			System.out.println("Enter Film ID: ");
+			break;
+		case 2:
+			System.out.println("___Searching Film by keyword___");
+			System.out.println("Enter keyword: ");
+			break;
+		case 3:
+			System.out.println("***Quiting Film Query Application***");
+			System.exit(0);
+			break;
+		default:
+			System.out.println("Not a valid Option. Please select number from menu.");
+			break;
+			
+		}
+
+	}
+
+	private void menu() {
+		System.out.println("Welcome to the Film Query Application!");
+		System.out.println("Please enter one of the number to select a Query option:");
+		System.out.println("1 - Look up film by its ID");
+		System.out.println("2 - Look up film a search keyword");
+		System.out.println("3 - Exit application");
+	}
 
 }

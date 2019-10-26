@@ -15,17 +15,9 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-	List<Film> films = new ArrayList<>();
+	private String cast;
 	List<Actor> actors = new ArrayList<>();
-
-	public List<Film> getFilms() {
-		return films;
-	}
-
-	public void setFilms(List<Film> films) {
-		this.films = films;
-	}
-
+	
 	public Film() {
 		super();
 	}
@@ -43,6 +35,22 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
+	}
+	
+	public String getCast() {
+		if(cast.size() == 0) {
+			System.out.println("No actors in film");
+		}
+		else {
+			for (Actor actor : actors) {
+				cast += actor;
+			}
+		}
+		return cast;
+	}
+	
+	public void setCast(List<Actor> actors) {
+		this.actors = actors;
 	}
 
 	public int getFilmId() {
@@ -138,7 +146,7 @@ public class Film {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
+		result = prime * result + filmId;
 		result = prime * result + languageId;
 		result = prime * result + length;
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());

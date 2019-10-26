@@ -39,7 +39,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
-
 			}
 			filmResult.close();
 			stmt.close();
@@ -116,11 +115,26 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return films;
 	}
 
-	@Override
-	public List<Actor> findActorsByFilmId(int filmId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<Actor> findActorsByFilmId(int filmId) {
+//		List<Actor> actors = new ArrayList<>();
+//		String user = "student";
+//		String pass = "student";
+//		try {
+//			Connection conn = DriverManager.getConnection(URL, user, pass);
+//			
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//			stmt.setInt(1, filmId);
+//			ResultSet rs = stmt.executeQuery();
+//		
+//		rs.close();
+//		stmt.close();
+//		conn.close();
+//	} catch (SQLException e) {
+//		e.printStackTrace();
+//	}
+//		return actors;
+//	}
 
 //	public void setUp() {
 //		String user = "student";

@@ -7,8 +7,7 @@ public class Actor {
 	private int actorId;
 	private String firstName;
 	private String lastName;
-	private List<Film> films;
-	List<Actor> actors = new ArrayList<>();
+	private List<Film> films = new ArrayList<>();
 
 	public Actor() {
 		super();
@@ -19,7 +18,6 @@ public class Actor {
 		this.actorId = actorId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.actors = actors;
 	}
 
 	public int getActorId() {
@@ -46,14 +44,6 @@ public class Actor {
 		this.lastName = lastName;
 	}
 
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -71,7 +61,6 @@ public class Actor {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + actorId;
-		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
@@ -87,11 +76,6 @@ public class Actor {
 			return false;
 		Actor other = (Actor) obj;
 		if (actorId != other.actorId)
-			return false;
-		if (actors == null) {
-			if (other.actors != null)
-				return false;
-		} else if (!actors.equals(other.actors))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
