@@ -10,17 +10,27 @@ public class Film {
 	private Integer releaseYear;
 	private int languageId;
 	private int rentalDuration;
+	private double rentalRate;
 	private int length;
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
 	List<Film> films = new ArrayList<>();
 
+
+	public List<Film> getFilms() {
+		return films;
+	}
+
+	public void setFilms(List<Film> films) {
+		this.films = films;
+	}
+
 	public Film() {
 		super();
 	}
 
-	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration,
+	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration, double rentalRate,
 			int length, double replacementCost, String rating, String specialFeatures) {
 		super();
 		this.filmId = id;
@@ -81,6 +91,14 @@ public class Film {
 
 	public void setRentalDuration(int rentalDuration) {
 		this.rentalDuration = rentalDuration;
+	}
+
+	public double getRentalRate() {
+		return rentalRate;
+	}
+
+	public void setRentalRate(double rentalRate) {
+		this.rentalRate = rentalRate;
 	}
 
 	public int getLength() {
