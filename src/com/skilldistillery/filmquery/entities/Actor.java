@@ -47,12 +47,13 @@ public class Actor {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Actor [ActorID= ");
+		builder.append("Actor [ActorID: ");
 		builder.append(actorId);
-		builder.append(", First Name= ");
+		builder.append(", First Name: ");
 		builder.append(firstName);
-		builder.append(", Last Name= ");
+		builder.append(", Last Name: ");
 		builder.append(lastName);
+		builder.append(" ]");
 		return builder.toString();
 	}
 

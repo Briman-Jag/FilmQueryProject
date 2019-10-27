@@ -21,6 +21,14 @@ public class Film {
 	public Film() {
 		super();
 	}
+	
+	public Film(int id, String title, Integer releaseYear, String rating, String description) {
+		this.filmId = id;
+		this.title = title;
+		this.rating = rating;
+		this.releaseYear = releaseYear;
+		this.description = description;
+	}
 
 	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration, double rentalRate,
 			int length, double replacementCost, String rating, String specialFeatures) {
@@ -36,6 +44,7 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 	}
+	
 	
 	public String getCast() {
 		if(cast.size() == 0) {
@@ -210,27 +219,18 @@ public class Film {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film [ID= ");
-		builder.append(filmId);
-		builder.append(", Title= ");
+		builder.append("Film ");
+		builder.append("Title: ");
 		builder.append(title);
-		builder.append(",\nDescription= ");
-		builder.append(description);
-		builder.append(",\nRelease Year= ");
+		builder.append("\nRelease Year: ");
 		builder.append(releaseYear);
-		builder.append(", Language ID= ");
-		builder.append(languageId);
-		builder.append(", Rental Duration= ");
-		builder.append(rentalDuration);
-		builder.append(", Length= ");
-		builder.append(length);
-		builder.append(",\nReplacement Cost= ");
-		builder.append(replacementCost);
-		builder.append(", Rating= ");
+		builder.append(", Rating: ");
 		builder.append(rating);
-		builder.append(", Special Features= ");
-		builder.append(specialFeatures);
-		builder.append("]");
+		builder.append("\nDescription: ");
+		builder.append(description);
+		builder.append("\n");
+		builder.append("Language: ");
+		builder.append(languageId);
 		return builder.toString();
 	}
 

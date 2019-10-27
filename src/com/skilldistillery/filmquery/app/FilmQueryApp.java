@@ -1,6 +1,7 @@
 package com.skilldistillery.filmquery.app;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,71 +31,67 @@ public class FilmQueryApp {
 
 	private void launch() throws SQLException {
 		Scanner input = new Scanner(System.in);
-		menu();
+		System.out.println("Welcome to the Film Query Application!");
 		startUserInterface(input);
 		input.close();
 	}
 
 	private void startUserInterface(Scanner input) throws SQLException {
 
-		Boolean keepGoing = true;
+		int choice = 0;
 		do {
-			int choice = input.nextInt();
-			switch (choice) {
+			menu();
+			try {
+				choice = input.nextInt();
+				switch (choice) {
 
-			case 1:
-				System.out.println("___Searching Film by Film's ID___");
-				System.out.println("Enter Film ID: ");
-				int filmId = input.nextInt();
-				Film film = db.findFilmById(filmId);
-				System.out.println(film);
-				break;
-			case 2:
-				System.out.println("___Searching Film by keyword___");
-				System.out.println("Enter keyword: ");
-				String keyword = input.next();
+				case 1:
+					System.out.println("___Searching for Film by Film's ID___");
+					System.out.println("Enter Film ID: ");
+					try {
+						int filmId = input.nextInt();
+						Film film = db.findFilmById(filmId);
+						if (film == null) {
+							System.out.println("Sorry. No film matching Film ID of " + filmId + ".");
+							System.out.println("Please try another Film ID.");
+						} else {
+							System.out.println(film);
+						}
+					} catch (InputMismatchException e) {
+						System.out.println("Not valid. A Film ID integer must be entered.");
+					}
+					break;
+				case 2:
+					System.out.println("___Searching for Film by keyword___");
+					System.out.println("Enter keyword: ");
+					String keyword = input.next();
+					List<Film> films = db.findFilmsByKeyword(keyword);
+					if (films.isEmpty()) {
+						System.out.println("Sorry. No film matching keyword of " + keyword + ".");
+						System.out.println("Please try another keyword.");
+					} else {
+						System.out.println(films);
+					}
 
-				break;
-			case 3:
-				System.out.println("***Quiting Film Query Application***");
-				keepGoing = false;
-				break;
-			default:
-				System.out.println("Not a valid Option. Please select number from menu.");
-				menu();
-				break;
-
+					break;
+				case 3:
+					System.out.println("***Quiting Film Query Application***");
+					break;
+				default:
+					System.out.println("Not a valid Option. Please select number from menu.");
+					menu();
+					break;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Not a valid choice. Please enter menu option 1, 2, or 3.");
+				choice = input.nextInt();
 			}
-		} while (keepGoing);
+		} while (choice != 3);
 		System.exit(0);
-
 	}
 
-//	private void userDecision(int choice) {
-//		
-//		switch (choice) {
-//
-//		case 1:
-//			System.out.println("___Searching Film by Film's ID___");
-//			System.out.println("Enter Film ID: ");
-//			break;
-//		case 2:
-//			System.out.println("___Searching Film by keyword___");
-//			System.out.println("Enter keyword: ");
-//			break;
-//		case 3:
-//			System.out.println("***Quiting Film Query Application***");
-//			System.exit(0);
-//			break;
-//		default:
-//			System.out.println("Not a valid Option. Please select number from menu.");
-//			break;
-//			
-//		}
-//	}
-
 	private void menu() {
-		System.out.println("Welcome to the Film Query Application!");
+		System.out.println("________________________________________________________");
 		System.out.println("Please enter one of the number to select a Query option:");
 		System.out.println("1 - Look up film by its ID");
 		System.out.println("2 - Look up film a search keyword");
