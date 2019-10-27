@@ -19,55 +19,79 @@ public class FilmQueryApp {
 		app.launch();
 	}
 
-	private void test() throws SQLException {
-//    Film film = db.findFilmById(1);
-//    System.out.println(film);
-//    Actor actor = db.findActorById(1);
-//    System.out.println(actor);
-//		List<Film> films = db.findFilmsByActorId(1);
-//		System.out.println(films);
-		
-	}
+//	private void test() throws SQLException {
+//	  Film film = db.findFilmById(1);
+//	  System.out.println(film);
+//	  Actor actor = db.findActorById(1);
+//	  System.out.println(actor);
+//	  List<Film> films = db.findFilmsByActorId(1);
+//	  System.out.println(films);
+//	}
 
-	private void launch() {
+	private void launch() throws SQLException {
 		Scanner input = new Scanner(System.in);
 		menu();
 		startUserInterface(input);
 		input.close();
 	}
 
-	private void startUserInterface(Scanner input) {
+	private void startUserInterface(Scanner input) throws SQLException {
 
-		int choice = input.nextInt();
+		Boolean keepGoing = true;
 		do {
-			userDecision(choice);
-		} while (choice != 3);
+			int choice = input.nextInt();
+			switch (choice) {
+
+			case 1:
+				System.out.println("___Searching Film by Film's ID___");
+				System.out.println("Enter Film ID: ");
+				int filmId = input.nextInt();
+				Film film = db.findFilmById(filmId);
+				System.out.println(film);
+				break;
+			case 2:
+				System.out.println("___Searching Film by keyword___");
+				System.out.println("Enter keyword: ");
+				String keyword = input.next();
+
+				break;
+			case 3:
+				System.out.println("***Quiting Film Query Application***");
+				keepGoing = false;
+				break;
+			default:
+				System.out.println("Not a valid Option. Please select number from menu.");
+				menu();
+				break;
+
+			}
+		} while (keepGoing);
+		System.exit(0);
 
 	}
 
-	private void userDecision(int choice) {
-		
-		switch (choice) {
-
-		case 1:
-			System.out.println("___Searching Film by Film's ID___");
-			System.out.println("Enter Film ID: ");
-			break;
-		case 2:
-			System.out.println("___Searching Film by keyword___");
-			System.out.println("Enter keyword: ");
-			break;
-		case 3:
-			System.out.println("***Quiting Film Query Application***");
-			System.exit(0);
-			break;
-		default:
-			System.out.println("Not a valid Option. Please select number from menu.");
-			break;
-			
-		}
-
-	}
+//	private void userDecision(int choice) {
+//		
+//		switch (choice) {
+//
+//		case 1:
+//			System.out.println("___Searching Film by Film's ID___");
+//			System.out.println("Enter Film ID: ");
+//			break;
+//		case 2:
+//			System.out.println("___Searching Film by keyword___");
+//			System.out.println("Enter keyword: ");
+//			break;
+//		case 3:
+//			System.out.println("***Quiting Film Query Application***");
+//			System.exit(0);
+//			break;
+//		default:
+//			System.out.println("Not a valid Option. Please select number from menu.");
+//			break;
+//			
+//		}
+//	}
 
 	private void menu() {
 		System.out.println("Welcome to the Film Query Application!");
