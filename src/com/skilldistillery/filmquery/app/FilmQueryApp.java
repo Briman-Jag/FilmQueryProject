@@ -14,7 +14,7 @@ public class FilmQueryApp {
 
 	DatabaseAccessor db = new DatabaseAccessorObject();
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, Exception {
 		FilmQueryApp app = new FilmQueryApp();
 //		app.test();
 		app.launch();
@@ -29,19 +29,20 @@ public class FilmQueryApp {
 //	  System.out.println(films);
 //	}
 
-	private void launch() throws SQLException {
+	private void launch() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to the Film Query Application!");
 		startUserInterface(input);
 		input.close();
 	}
 
-	private void startUserInterface(Scanner input) throws SQLException {
+	private void startUserInterface(Scanner input) {
 
 		int choice = 0;
+		boolean keepGoing = true;
 		do {
-			menu();
 			try {
+				menu();
 				choice = input.nextInt();
 				switch (choice) {
 
@@ -73,18 +74,18 @@ public class FilmQueryApp {
 					break;
 				case 3:
 					System.out.println("***Quiting Film Query Application***");
+					System.exit(0);
 					break;
 				default:
 					System.out.println("Not a valid Option. Please select number from menu.");
-					menu();
-					break;
+					continue;
 				}
-			} catch (InputMismatchException e) {
+			} catch (Exception e) {
 				System.out.println("Not a valid choice. Please enter menu option 1, 2, or 3.");
 				choice = input.nextInt();
 			}
-		} while (choice != 3);
-		System.exit(0);
+		} while (keepGoing);
+
 	}
 
 	private void menu() {
