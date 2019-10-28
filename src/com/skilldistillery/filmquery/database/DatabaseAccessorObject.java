@@ -49,7 +49,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String pass = "student";
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT id, title, release_year, description, rating FROM film where title LIKE ? OR description like ?";
+			String sql = "SELECT film.id, film.title, film.release_year, film.rating, film.description, language.name FROM film JOIN language ON language.id = language_id WHERE title LIKE ? OR description LIKE ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + keyword + "%");
 			stmt.setString(2, "%" + keyword + "%");
@@ -60,7 +60,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				int releaseYear = rs.getInt("release_year");
 				String description = rs.getString("description");
 				String rating = rs.getString("rating");
-				String languageName = filmLanguage(id);
+				String languageName = rs.getString("language.name");
 				Film film = new Film(id, title, releaseYear, rating, description, languageName);
 				films.add(film);
 			}
@@ -134,23 +134,28 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
-		List<Actor> actors = new ArrayList<>();
+		List<Actor> cast = new ArrayList<>();
 		String user = "student";
 		String pass = "student";
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "";
+			String sql = "SELECT actor.first_name, actor.last_name FROM actor JOIN film_actor ON actor.id = actor_id JOIN film ON film_id = film.id WHERE film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
-
+			while(rs.next()) {
+				String firstName = rs.getString("actor.first_name");
+				String lastName = rs.getString("actor.last_name");
+				Actor actor = new Actor(firstName, lastName);
+				cast.add(actor);
+			}
 			rs.close();
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return actors;
+		return cast;
 	}
 
 //	public void setUp() {

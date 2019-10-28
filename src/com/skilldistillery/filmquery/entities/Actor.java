@@ -13,13 +13,19 @@ public class Actor {
 		super();
 	}
 
-	public Actor(int actorId, String firstName, String lastName, List<Actor> actors) {
+	public Actor(int actorId, String firstName, String lastName) {
 		super();
 		this.actorId = actorId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-
+	
+	public Actor(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
 	public int getActorId() {
 		return actorId;
 	}
@@ -47,9 +53,8 @@ public class Actor {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Actor [ActorID: ");
-		builder.append(actorId);
-		builder.append(", First Name: ");
+		builder.append("[ Actor - ");
+		builder.append("First Name: ");
 		builder.append(firstName);
 		builder.append(", Last Name: ");
 		builder.append(lastName);

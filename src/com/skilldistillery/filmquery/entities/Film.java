@@ -15,14 +15,21 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-	private String cast;
 	private String languageName;
-	List<Actor> actors = new ArrayList<>();
+	List<Actor> cast = new ArrayList<>();
 	
 	public Film() {
 		super();
 	}
 	
+	public List<Actor> getCast() {
+		return cast;
+	}
+
+	public void setCast(List<Actor> cast) {
+		this.cast = cast;
+	}
+
 	public Film(int id, String title, Integer releaseYear, String rating, String description) {
 		this.filmId = id;
 		this.title = title;
@@ -39,6 +46,16 @@ public class Film {
 		this.description = description;
 		this.languageName = languageName;
 	}
+	
+	public Film(int id, String title, Integer releaseYear, String rating, String description, String languageName, List<Actor> cast) {
+		this.filmId = id;
+		this.title = title;
+		this.rating = rating;
+		this.releaseYear = releaseYear;
+		this.description = description;
+		this.languageName = languageName;
+		this.cast = cast;
+	}
 
 	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration, double rentalRate,
 			int length, double replacementCost, String rating, String specialFeatures) {
@@ -53,22 +70,6 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
-	}
-	
-	public String getCast() {
-		if(cast.size() == 0) {
-			System.out.println("No actors in film");
-		}
-		else {
-			for (Actor actor : actors) {
-				cast += actor;
-			}
-		}
-		return cast;
-	}
-	
-	public void setCast(List<Actor> actors) {
-		this.actors = actors;
 	}
 
 	public int getFilmId() {
