@@ -36,4 +36,4 @@ When the program is launched it will print a menu giving the user the options to
 To run this program the user will need to use a command prompt and a SQL server like MySQL with the sdvid.sql database file. A pom.xml file used a Maven compiler plugin to connect the program on eclipse to the proper version of the MySQL server.
 
 ### Technologies/Topics Applied
-Technologies and topics used in this project were: MySQL, SQL, ArrayLists, .xml, Maven, getters & setters, method calling, while loops, switch, toStrings, booleans, menu interface, foreach loops , Do/while loops, and Encapsulation.
+Technologies and topics used in this project were: MySQL, MAMP, SQL, ArrayLists, .xml, Maven, getters & setters, method calling, while loops, switch, toStrings, booleans, menu interface, foreach loops , Do/while loops, and Encapsulation.
