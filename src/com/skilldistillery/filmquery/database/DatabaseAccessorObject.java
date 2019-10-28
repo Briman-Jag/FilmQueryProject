@@ -89,7 +89,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				actor.setActorId(rs.getInt("id"));
 				actor.setFirstName(rs.getString("first_name"));
 				actor.setLastName(rs.getString("last_name"));
-//				actor.setFilms(findFilmsByActorId(actorId)); // An Actor has Films
+				actor.setFilms(findFilmsByActorId(actorId)); // An Actor has Films
 			}
 			rs.close();
 			stmt.close();

@@ -9,6 +9,14 @@ public class Actor {
 	private String lastName;
 	private List<Film> films = new ArrayList<>();
 
+	public List<Film> getFilms() {
+		return films;
+	}
+
+	public void setFilms(List<Film> films) {
+		this.films = films;
+	}
+
 	public Actor() {
 		super();
 	}
@@ -19,13 +27,13 @@ public class Actor {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
 	public Actor(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
 	public int getActorId() {
 		return actorId;
 	}
@@ -54,11 +62,10 @@ public class Actor {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("[ Actor - ");
-		builder.append("First Name: ");
 		builder.append(firstName);
-		builder.append(", Last Name: ");
+		builder.append(", ");
 		builder.append(lastName);
-		builder.append(" ]");
+		builder.append(" ]\n");
 		return builder.toString();
 	}
 
