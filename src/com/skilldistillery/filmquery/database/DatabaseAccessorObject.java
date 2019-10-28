@@ -55,13 +55,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setString(2, "%" + keyword + "%");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				int id = rs.getInt("id");
+				int filmId = rs.getInt("id");
 				String title = rs.getString("title");
 				int releaseYear = rs.getInt("release_year");
 				String description = rs.getString("description");
 				String rating = rs.getString("rating");
 				String languageName = rs.getString("language.name");
-				Film film = new Film(id, title, releaseYear, rating, description, languageName);
+				List<Actor> cast = findActorsByFilmId(filmId);
+				Film film = new Film(filmId, title, releaseYear, rating, description, languageName, cast);
 				films.add(film);
 			}
 			rs.close();
@@ -143,7 +144,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				String firstName = rs.getString("actor.first_name");
 				String lastName = rs.getString("actor.last_name");
 				Actor actor = new Actor(firstName, lastName);
@@ -157,16 +158,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return cast;
 	}
-
-//	public void setUp() {
-//		String user = "student";
-//		String pass = "student";
-//		try {
-//			Connection conn = DriverManager.getConnection(URL, user, pass);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 //	@Override
 //	public Film findAllInfoOnFilmById(int filmId) {
