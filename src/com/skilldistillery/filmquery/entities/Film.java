@@ -29,6 +29,18 @@ public class Film {
 	public void setCast(List<Actor> cast) {
 		this.cast = cast;
 	}
+	
+	public Film(int id, String title, Integer releaseYear, String rating, String description, String languageName,
+			List<Actor> cast) {
+		this.filmId = id;
+		this.title = title;
+		this.rating = rating;
+		this.releaseYear = releaseYear;
+		this.description = description;
+		this.languageName = languageName;
+		this.cast = cast;
+	}
+
 
 	public Film(int id, String title, Integer releaseYear, String rating, String description) {
 		this.filmId = id;
@@ -47,15 +59,6 @@ public class Film {
 		this.languageName = languageName;
 	}
 	
-	public Film(int id, String title, Integer releaseYear, String rating, String description, String languageName, List<Actor> cast) {
-		this.filmId = id;
-		this.title = title;
-		this.rating = rating;
-		this.releaseYear = releaseYear;
-		this.description = description;
-		this.languageName = languageName;
-		this.cast = cast;
-	}
 
 	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration, double rentalRate,
 			int length, double replacementCost, String rating, String specialFeatures) {
@@ -248,6 +251,8 @@ public class Film {
 		builder.append(description);
 		builder.append("\nLanguage: ");
 		builder.append(languageName);
+		builder.append("Cast: ");
+		builder.append(cast);
 		builder.append("\n");
 		return builder.toString();
 	}
