@@ -16,6 +16,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private String cast;
+	private String languageName;
 	List<Actor> actors = new ArrayList<>();
 	
 	public Film() {
@@ -28,6 +29,15 @@ public class Film {
 		this.rating = rating;
 		this.releaseYear = releaseYear;
 		this.description = description;
+	}
+	
+	public Film(int id, String title, Integer releaseYear, String rating, String description, String languageName) {
+		this.filmId = id;
+		this.title = title;
+		this.rating = rating;
+		this.releaseYear = releaseYear;
+		this.description = description;
+		this.languageName = languageName;
 	}
 
 	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration, double rentalRate,
@@ -44,7 +54,6 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 	}
-	
 	
 	public String getCast() {
 		if(cast.size() == 0) {
@@ -150,6 +159,14 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
+	public String getLanguageName() {
+		return languageName;
+	}
+	
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -228,10 +245,11 @@ public class Film {
 		builder.append(rating);
 		builder.append("\nDescription: ");
 		builder.append(description);
+		builder.append("\nLanguage: ");
+		builder.append(languageName);
 		builder.append("\n");
-		builder.append("Language: ");
-		builder.append(languageId);
 		return builder.toString();
 	}
+
 
 }

@@ -21,7 +21,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String pass = "student";
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT id, title, release_year, rating, description FROM film WHERE id = ?";
+			String sql = "SELECT film.id, film.title, film.release_year, film.rating, film.description, language.name FROM film JOIN language ON language.id = language_id WHERE film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
@@ -31,7 +31,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				int releaseYear = rs.getInt("release_year");
 				String description = rs.getString("description");
 				String rating = rs.getString("rating");
-				film = new Film(id, title, releaseYear, rating, description);
+				String languageName = rs.getString("language.name");
+				film = new Film(id, title, releaseYear, rating, description, languageName);
 			}
 			rs.close();
 			stmt.close();
@@ -59,7 +60,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				int releaseYear = rs.getInt("release_year");
 				String description = rs.getString("description");
 				String rating = rs.getString("rating");
-				Film film = new Film(id, title, releaseYear, rating, description);
+				String languageName = filmLanguage(id);
+				Film film = new Film(id, title, releaseYear, rating, description, languageName);
 				films.add(film);
 			}
 			rs.close();
@@ -69,23 +71,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			e.printStackTrace();
 		}
 		return films;
-	}
-	
-	public void filmLanguage(int filmId) {
-		String user = "student";
-		String pass = "student";
-		String sql = "SELECT language.name FROM language JOIN film ON language.id = language_id WHERE film.id = ?";
-		try {
-		Connection conn = DriverManager.getConnection(URL, user, pass);
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1,filmId);
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			
-		}
-		} catch (SQLException e) {
-			System.err.println(e);
-		}
 	}
 
 	// To Do!
@@ -146,10 +131,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return films;
 	}
-	
-	public void filmLanguage(String language) {
-		
-	}
 
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
@@ -158,7 +139,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String pass = "student";
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			
+			String sql = "";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
