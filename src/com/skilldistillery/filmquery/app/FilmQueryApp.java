@@ -1,13 +1,11 @@
 package com.skilldistillery.filmquery.app;
 
-import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
-import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -19,7 +17,7 @@ public class FilmQueryApp {
 //		app.test();			// Used for testing
 		app.launch();
 	}
-	
+
 	// Used for testing
 //	private void test() throws SQLException {
 //	  Film film = db.findFilmById(1);
@@ -64,24 +62,18 @@ public class FilmQueryApp {
 						} catch (InputMismatchException e) {
 							System.out.println("Not valid. A Film ID integer must be entered.");
 							input.nextLine();
-						} catch (SQLException e) {
-							e.printStackTrace();
 						}
 					}
 					break;
 				case 2:
 					System.out.println("___Searching for Film by keyword___");
 					System.out.println("Enter keyword: ");
-					try {
-						String keyword = input.next();
-						List<Film> films = db.findFilmsByKeyword(keyword);
-						if (films.isEmpty()) {
-							System.out.println("No films matching keyword of " + keyword + ".");
-						} else {
-							System.out.println(films);
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
+					String keyword = input.next();
+					List<Film> films = db.findFilmsByKeyword(keyword);
+					if (films.isEmpty()) {
+						System.out.println("No films matching keyword of " + keyword + ".");
+					} else {
+						System.out.println(films);
 					}
 					break;
 				case 3:

@@ -17,11 +17,11 @@ public class Film {
 	private String specialFeatures;
 	private String languageName;
 	List<Actor> cast = new ArrayList<>();
-	
+
 	public Film() {
 		super();
 	}
-	
+
 	public List<Actor> getCast() {
 		return cast;
 	}
@@ -29,7 +29,7 @@ public class Film {
 	public void setCast(List<Actor> cast) {
 		this.cast = cast;
 	}
-	
+
 	public Film(int id, String title, Integer releaseYear, String rating, String description, String languageName,
 			List<Actor> cast) {
 		this.filmId = id;
@@ -41,7 +41,6 @@ public class Film {
 		this.cast = cast;
 	}
 
-
 	public Film(int id, String title, Integer releaseYear, String rating, String description) {
 		this.filmId = id;
 		this.title = title;
@@ -49,7 +48,7 @@ public class Film {
 		this.releaseYear = releaseYear;
 		this.description = description;
 	}
-	
+
 	public Film(int id, String title, Integer releaseYear, String rating, String description, String languageName) {
 		this.filmId = id;
 		this.title = title;
@@ -58,10 +57,9 @@ public class Film {
 		this.description = description;
 		this.languageName = languageName;
 	}
-	
 
-	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration, double rentalRate,
-			int length, double replacementCost, String rating, String specialFeatures) {
+	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
 		super();
 		this.filmId = id;
 		this.title = title;
@@ -166,11 +164,11 @@ public class Film {
 	public String getLanguageName() {
 		return languageName;
 	}
-	
+
 	public void setLanguageName(String languageName) {
 		this.languageName = languageName;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -255,6 +253,5 @@ public class Film {
 		builder.append(cast);
 		return builder.toString();
 	}
-
 
 }

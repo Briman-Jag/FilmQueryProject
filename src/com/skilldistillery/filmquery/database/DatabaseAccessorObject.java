@@ -43,7 +43,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return film;
 	}
-
+	
+	@Override
 	public List<Film> findFilmsByKeyword(String keyword) {
 		List<Film> films = new ArrayList<>();
 		String user = "student";
@@ -75,7 +76,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return films;
 	}
 
-	// To Do!
+	@Override
 	public Actor findActorById(int actorId) {
 		Actor actor = null;
 		String sql = "SELECT id, first_name, last_name FROM actor WHERE id = ?";
@@ -159,7 +160,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return cast;
 	}
-
+	// Possible for stretch goals to query all information
 //	@Override
 //	public Film findAllInfoOnFilmById(int filmId) {
 //		Film film = null;
@@ -195,5 +196,4 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 //		}
 //		return film;
 //	}
-
 }
