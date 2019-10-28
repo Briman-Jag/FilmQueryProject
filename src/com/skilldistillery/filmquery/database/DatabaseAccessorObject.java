@@ -32,7 +32,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				String description = rs.getString("description");
 				String rating = rs.getString("rating");
 				String languageName = rs.getString("language.name");
-				film = new Film(id, title, releaseYear, rating, description, languageName);
+				List<Actor> cast = findActorsByFilmId(filmId);
+				film = new Film(id, title, releaseYear, rating, description, languageName, cast);
 			}
 			rs.close();
 			stmt.close();

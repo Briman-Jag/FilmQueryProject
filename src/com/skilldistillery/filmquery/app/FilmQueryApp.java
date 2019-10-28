@@ -51,13 +51,10 @@ public class FilmQueryApp {
 					try {
 						int filmId = input.nextInt();
 						Film film = db.findFilmById(filmId);
-						List<Actor> cast = db.findActorsByFilmId(filmId);
 						if (film == null) {
-							System.out.println("Sorry. No film matching Film ID of " + filmId + ".");
-							System.out.println("Please try another Film ID.");
+							System.out.println("No film matching Film ID of " + filmId + ".");
 						} else {
 							System.out.println(film);
-							System.out.println("Cast: " + cast);
 						}
 					} catch (InputMismatchException e) {
 						System.out.println("Not valid. A Film ID integer must be entered.");
@@ -69,8 +66,7 @@ public class FilmQueryApp {
 					String keyword = input.next();
 					List<Film> films = db.findFilmsByKeyword(keyword);
 					if (films.isEmpty()) {
-						System.out.println("Sorry. No film matching keyword of " + keyword + ".");
-						System.out.println("Please try another keyword.");
+						System.out.println("No films matching keyword of " + keyword + ".");
 					} else {
 						System.out.println(films);
 					}

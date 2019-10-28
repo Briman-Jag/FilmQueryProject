@@ -251,9 +251,8 @@ public class Film {
 		builder.append(description);
 		builder.append("\nLanguage: ");
 		builder.append(languageName);
-		builder.append("Cast: ");
+		builder.append("\nCast: \n");
 		builder.append(cast);
-		builder.append("\n");
 		return builder.toString();
 	}
 
